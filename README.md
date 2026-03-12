@@ -8,5 +8,8 @@ O projeto implementará um calendário pensado para os universitários. Onde ser
      - Provas;
      - Trabalhos;
      - Aulas;
-     - Tarefas;
+     - Exercícios.
+    3. Deletar tarefas;
+    4. Visualizar a agenda no mobile e web;
+    5. Adicionar prioridade as tarefas da agenda.
      
