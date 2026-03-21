@@ -1,0 +1,47 @@
+html{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+h2{
+    color: white;
+}
+
+img{
+    width: 1000px;
+    height: 300px;
+}
+
+footer{
+    color: white;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    padding: 30px;
+}
+
+footer a:visited{
+    color: #00ff04
+}
+
+input{
+    margin: 5px;
+    padding: 10px;
+}
+
+input[type=submit]{
+    color: white;
+    font-weight: bold;
+
+    background-color: #ff6a00;
+    border-radius: 30px;
+}
+
+input[type=submit]:hover{
+    color: white;
+    font-weight: bold;
+
+    background-color: #0015ff;
+    border-radius: 30px;
+}
+

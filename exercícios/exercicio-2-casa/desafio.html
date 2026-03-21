@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafios para Casa</title>
+</head>
+<body>
+
+<div>
+    <h1>Desafios de JavaScript</h1>
+
+    <section>
+        <h3>Desafio 1: O Interruptor</h3>
+        <p id="luz-texto">A luz está APAGADA</p>
+        <button class="btn" onclick="alternarLuz()">Alternar Luz</button>
+    </section>
+
+    <section>
+        <h3>Desafio 2: O Multiplicador</h3>
+        <h1 id="multiplicador-display">2</h1>
+        <button class="btn" onclick="dobrar()">Dobrar</button>
+    </section>
+</div>
+
+<script>
+    /* DESAFIO 1*/
+    function alternarLuz() {
+        const statusLuz = document.querySelector('#luz-texto');
+
+        if (statusLuz.innerHTML === "A luz está APAGADA") {
+            statusLuz.innerHTML = "A luz está ACESA";
+        } else {
+            statusLuz.innerHTML = "A luz está APAGADA";
+        }
+    }
+
+    /* DESAFIO 2*/
+    let valor = 2;
+    function dobrar() {
+        const display = document.querySelector('#multiplicador-display');
+        
+        valor = valor * 2;
+        
+        display.innerHTML = valor;
+
+        if (valor > 100) {
+            alert(`Cuidado, o número ${valor} está ficando muito grande!`);
+        }
+    }
+</script>
+
+</body>
+</html>
