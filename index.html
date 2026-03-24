@@ -1,0 +1,19 @@
+
+<DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Meu Site</title>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.js" integrity="sha384-ezjq8118wdwdRMj+nX4bevEi+cDLTbhLAeFF688VK8tPDGeLUe0WoY2MZtSla72F" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <button hx-post="tempĺates/curtir"
+                hx-confirm="Curtidoooooooo!!!!!!!"
+                hx-target="main">
+                Curtir
+        </button>
+
+        <div hx-get="/home/curtir"
+            hx-trigger="keyup[altGraphKey&&shiftKey&&(key=='p'||key=='P')] from:body">
+        </div>
+    </body>
+
