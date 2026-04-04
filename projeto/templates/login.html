@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Agenda Universitária</title>
+    <style>
+        :root {
+            --bg: #fffcf2; 
+            --surface: #ffffff; 
+            --text: #5d4747;
+            --accent: #f8ad9d; 
+            --details: #f08080;
+            --border: #ffcad4;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg);
+            background-image: url('/static/flores_bg.png');
+            background-size: 200px;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            background-color: var(--surface);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            box-shadow: 0 10px 20px rgba(255, 202, 212, 0.4);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+        }
+        h2 {
+            color: var(--details);
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-sizing: border-box;
+            background-color: #fff9f9;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background-color: var(--accent);
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: var(--details);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Bem-vindo(a)</h2>
+        <form action="/login" method="POST">
+            <input type="text" name="nome" placeholder="Digite seu nome..." required>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

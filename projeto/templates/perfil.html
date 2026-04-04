@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block conteudo %}
+<style>
+    :root {
+        --bg-form: #ffffff;
+        --accent-soft: #f8ad9d;
+        --details-pink: #f08080;
+        --border-light: #ffcad4;
+        --text-brown: #5d4747;
+    }
+
+    .perfil-container {
+        background-color: var(--bg-form);
+        padding: 30px;
+        border-radius: 20px;
+        border: 2px solid var(--border-light);
+        max-width: 500px;
+        margin: 40px auto;
+        box-shadow: 0 8px 15px rgba(255, 202, 212, 0.3);
+        position: relative;
+    }
+
+    .perfil-container::before {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2rem;
+    }
+
+    h2 {
+        color: var(--details-pink);
+        text-align: center;
+        font-family: 'Georgia', serif;
+        margin-bottom: 25px;
+    }
+
+    .edicao-perfil {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .campo-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    label {
+        font-weight: bold;
+        color: var(--text-brown);
+        font-size: 0.9rem;
+        padding-left: 5px;
+    }
+
+    input, textarea {
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid var(--border-light);
+        background-color: #fff9f9;
+        color: var(--text-brown);
+        font-family: inherit;
+        transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent-soft);
+        background-color: white;
+    }
+
+    .btn-salvar {
+        background-color: var(--accent-soft);
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s, transform 0.2s;
+        margin-top: 10px;
+    }
+
+    .btn-salvar:hover {
+        background-color: var(--details-pink);
+        transform: translateY(-2px);
+    }
+
+    .btn-salvar:active {
+        transform: translateY(0);
+    }
+</style>
+
+<div class="perfil-container">
+    <h2>Editar Meu Perfil</h2>
+    
+    <form class="edicao-perfil" hx-put="/perfil" hx-target="body">
+        <div class="campo-grupo">
+            <label>Nome do(a)  Estudante</label>
+            <input type="text" name="nome" value="{{ usuario.nome }}" required>
+        </div>
+        
+        <div class="campo-grupo">
+            <label>Curso</label>
+            <input type="text" name="curso" value="{{ usuario.curso }}" required>
+        </div>
+        
+        <div class="campo-grupo">
+            <label>Sua Bio</label>
+            <textarea name="bio" rows="4" placeholder="Conte um pouco sobre você..." required>{{ usuario.bio }}</textarea>
+        </div>
+        
+        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+    </form>
+</div>
+{% endblock %}

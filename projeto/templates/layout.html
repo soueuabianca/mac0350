@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Universitária</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+        :root {
+            --bg: #ffffff; 
+            --surface: #fff5f5; 
+            --text: #5d4747;
+            --accent: #f8ad9d; 
+            --details: #f08080;
+            --border: #ffcad4;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg);
+            background-image: url('/static/flores_bg.png');
+            background-size: 200px;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px dotted var(--details);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .user-info h1 {
+            color: var(--details);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+        }
+        .user-info a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .user-info p {
+            font-style: italic;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .profile-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            max-width: 300px;
+        }
+        .profile-photo-btn {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            background-image: url('/static/foto_perfil.png');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .profile-photo-btn:hover {
+            transform: scale(1.05);
+        }
+        .user-bio {
+            font-size: 0.9rem;
+            color: #8b5e5e;
+            line-height: 1.3;
+        }
+        form.busca-avancada, form.criacao {
+            background-color: var(--surface);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        input, select, button {
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background-color: white;
+            color: var(--text);
+        }
+        button {
+            background-color: var(--accent);
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: var(--details);
+        }
+        #lista-tarefas {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .tarefa-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 15px;
+            background-color: white;
+            position: relative;
+        }
+        .btn-deletar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            box-shadow: none;
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-deletar:hover {
+            background-color: transparent;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            header, form.busca-avancada, form.criacao {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .profile-side {
+                align-items: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="user-info">
+                <a href="/"><h1>Agenda Universitária</h1></a>
+                {% if usuario %}
+                <p>
+                    <strong>Olá, {{ usuario.nome }}</strong> <br>
+                    {{ usuario.curso }}
+                </p>
+                {% endif %}
+            </div>
+            
+            <div class="profile-side">
+                <a href="/perfil" class="profile-photo-btn" title="Ir para o Perfil"></a>
+                <div class="user-bio">
+                    {% if usuario %}
+                        {{ usuario.bio }}
+                    {% endif %}
+                </div>
+                <form action="/logout" method="POST" style="margin-top: 10px;">
+                <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; border-radius: 8px;">Sair</button>
+                </form>
+                <div class="profile-side">
+            </div>
+        </header>
+
+        <main>
+            {% block conteudo %}{% endblock %}
+        </main>
+
+    </div>
+</body>
+</html>
