@@ -1,31 +1,36 @@
-{% for tarefa in tarefas %}
-<div class="tarefa-card">
-    <h3 style="margin: 0 0 5px 0; color: var(--details); padding-right: 30px;">{{ tarefa.titulo }}</h3>
-    <p style="margin: 0 0 2px 0; font-size: 0.9rem; color: #8b5e5e;">Tipo: {{ tarefa.tipo }}</p>
-    <p style="margin: 0 0 0 0; font-size: 0.9rem; color: #8b5e5e;">Prioridade: {{ tarefa.prioridade }}</p>
-    
-<button class="btn-deletar"
-            hx-delete="/tarefas?id={{ tarefa.id }}&busca={{ busca }}&tipo_busca={{ tipo_busca }}&prioridade_busca={{ prioridade_busca }}&pagina={{ pagina }}" 
-            hx-target="#lista-tarefas" 
-            hx-confirm="Concluir esta tarefa?" 
-            title="Feito!">🐾</button>
-</div>
-{% else %}
-<p style="text-align: center; color: #8b5e5e; font-style: italic;">Você não tem tarefas agendadas no momento com esses filtros.</p>
-{% endfor %}
+<div id="lista-tarefas">
+    {% for tarefa in tarefas %}
+    <div class="tarefa-card">
+        <h3>{{ tarefa.titulo }}</h3>
+        <p>Tipo: {{ tarefa.tipo }} | Prioridade: {{ tarefa.prioridade }}</p>
+        
+        <button class="btn-deletar"
+                hx-delete="/tarefas?id={{ tarefa.id }}" 
+                hx-target="#lista-tarefas" 
+                hx-swap="outerHTML"
+                hx-confirm="Concluir esta tarefa?">🐾</button>
+    </div>
+    {% else %}
+    <p style="text-align: center; font-style: italic;">Nenhuma tarefa encontrada.</p>
+    {% endfor %}
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-    {% if pagina > 1 %}
-    <button hx-get="/?busca={{ busca }}&tipo_busca={{ tipo_busca }}&prioridade_busca={{ prioridade_busca }}&pagina={{ pagina - 1 }}" hx-target="#lista-tarefas">Anterior</button>
-    {% else %}
-    <div style="width: 80px;"></div>
-    {% endif %}
-    
-    <span style="color: #8b5e5e; font-size: 0.95rem; font-weight: bold;">Página {{ pagina }} de {{ total_paginas }}</span>
-    
-    {% if tem_mais %}
-    <button hx-get="/?busca={{ busca }}&tipo_busca={{ tipo_busca }}&prioridade_busca={{ prioridade_busca }}&pagina={{ pagina + 1 }}" hx-target="#lista-tarefas">Próxima</button>
-    {% else %}
-    <div style="width: 80px;"></div>
-    {% endif %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+        {% if pagina > 1 %}
+        <button hx-get="/?busca={{ busca }}&tipo_busca={{ tipo_busca }}&prioridade_busca={{ prioridade_busca }}&pagina={{ pagina - 1 }}" 
+                hx-target="#lista-tarefas" 
+                hx-swap="outerHTML">Anterior</button>
+        {% else %}
+        <div style="width: 80px;"></div>
+        {% endif %}
+        
+        <span>Página {{ pagina }} de {{ total_paginas }}</span>
+        
+        {% if tem_mais %}
+        <button hx-get="/?busca={{ busca }}&tipo_busca={{ tipo_busca }}&prioridade_busca={{ prioridade_busca }}&pagina={{ pagina + 1 }}" 
+                hx-target="#lista-tarefas" 
+                hx-swap="outerHTML">Próxima</button>
+        {% else %}
+        <div style="width: 80px;"></div>
+        {% endif %}
+    </div>
 </div>

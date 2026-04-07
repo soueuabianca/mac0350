@@ -5,15 +5,12 @@ from typing import Optional
 
 app = FastAPI()
 
-# Banco de dados em memória (lista simples)
 db_usuarios = []
 
-# Modelo Pydantic para validar o corpo do POST
 class Usuario(BaseModel):
     nome: str
     idade: int
 
-# --- 1. Rota GET '/' (Renderiza o HTML) ---
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
     return """
@@ -62,13 +59,11 @@ async def read_root():
     </html>
     """
 
-# --- 2. Rota POST '/users' (Adiciona usuário) ---
 @app.post("/users")
 async def create_user(user: Usuario):
     db_usuarios.append(user)
     return {"message": "Usuário adicionado!", "user": user}
 
-# --- 3. Rota GET '/users' (Lê lista ou índice) ---
 @app.get("/users")
 async def get_users(index: Optional[int] = Query(None)):
     if index is not None:
@@ -77,7 +72,6 @@ async def get_users(index: Optional[int] = Query(None)):
         return {"error": "Índice fora do alcance"}
     return db_usuarios
 
-# --- 4. Rota DELETE '/users' (Limpa a lista) ---
 @app.delete("/users")
 async def delete_users():
     db_usuarios.clear()

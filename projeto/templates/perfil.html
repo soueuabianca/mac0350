@@ -97,7 +97,7 @@
 <div class="perfil-container">
     <h2>Editar Meu Perfil</h2>
     
-    <form class="edicao-perfil" hx-put="/perfil" hx-target="body">
+    <form class="edicao-perfil" hx-patch="/perfil" hx-target="body">
         <div class="campo-grupo">
             <label>Nome do(a)  Estudante</label>
             <input type="text" name="nome" value="{{ usuario.nome }}" required>
@@ -110,7 +110,8 @@
         
         <div class="campo-grupo">
             <label>Sua Bio</label>
-            <textarea name="bio" rows="4" placeholder="Conte um pouco sobre você..." required>{{ usuario.bio }}</textarea>
+            <textarea name="bio" rows="4" placeholder="Conte um pouco sobre você..." 
+            required>{{ usuario.bio }}</textarea>
         </div>
         
         <button type="submit" class="btn-salvar">Salvar Alterações</button>

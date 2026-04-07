@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 
 {% block conteudo %}
-<form class="busca-avancada" hx-get="/" hx-target="#lista-tarefas" hx-trigger="keyup, change">
-    <input type="text" name="busca" placeholder="Buscar tarefas..." value="{{ busca }}" style="flex-grow: 1;">
+<form class="busca-avancada" 
+      hx-get="/" 
+      hx-target="#lista-tarefas" 
+      hx-select="#lista-tarefas" 
+      hx-trigger="keyup, change"
+      hx-swap="outerHTML">
+    
+    <input type="text" name="busca" placeholder="Buscar tarefas" value="{{ busca }}" style="flex-grow: 1;">
+    
     <select name="tipo_busca">
         <option value="">Todos os Tipos</option>
         <option value="Prova">Prova</option>
@@ -10,6 +17,7 @@
         <option value="Aula">Aula</option>
         <option value="Exercício">Exercício</option>
     </select>
+    
     <select name="prioridade_busca">
         <option value="">Todas as Prioridades</option>
         <option value="Baixa">Baixa</option>
@@ -18,8 +26,14 @@
     </select>
 </form>
 
-<form class="criacao" hx-post="/tarefas" hx-target="#lista-tarefas">
+<form class="criacao" 
+      hx-post="/tarefas" 
+      hx-target="#lista-tarefas" 
+      hx-select="#lista-tarefas" 
+      hx-swap="outerHTML">
+    
     <input type="text" name="titulo" placeholder="O que temos para hoje?" required style="flex-grow: 1;">
+    
     <select name="tipo" required>
         <option value="" disabled selected>Tipo</option>
         <option value="Prova">Prova</option>
@@ -27,16 +41,22 @@
         <option value="Aula">Aula</option>
         <option value="Exercício">Exercício</option>
     </select>
+    
     <select name="prioridade" required>
         <option value="" disabled selected>Prioridade</option>
         <option value="Baixa">Baixa</option>
         <option value="Média">Média</option>
         <option value="Alta">Alta</option>
     </select>
+    
     <button type="submit">Adicionar</button>
 </form>
 
-<div id="lista-tarefas">
-    {% include 'lista_tarefas.html' %}
+<div id="lista-tarefas" 
+     hx-get="/tarefas" 
+     hx-trigger="load" 
+     hx-swap="outerHTML">
+    <p style="text-align: center; color: #8b5e5e;">Carregando suas tarefas...</p>
 </div>
+
 {% endblock %}

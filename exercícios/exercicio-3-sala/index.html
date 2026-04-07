@@ -127,7 +127,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // --- Exercício 1 ---
+        //Exercício 1
         const btnClique = document.querySelector('#btn-listener');
         if (btnClique) {
             btnClique.addEventListener('click', () => {
@@ -136,7 +136,7 @@
         }
         
         
-        // --- Exercício 2 ---
+        //Exercício 2
         const btnAdd = document.querySelector('#btn-add');
         const inputTarefa = document.querySelector('#input-item');
         const lista = document.querySelector('#lista-itens');
@@ -148,13 +148,13 @@
                     const li = document.createElement('li');
                     li.innerHTML = texto;
                     lista.append(li);
-                    inputTarefa.value = ''; // Limpa o campo
+                    inputTarefa.value = '';
                 }
             };
         }
         
         
-        // --- Exercício 3 ---
+        //Exercício 3
         const btnIniciar = document.querySelector('#btn-iniciar');
         const visor = document.querySelector('#visor-cronometro');
         let cronometro;
@@ -162,7 +162,6 @@
 
         if (btnIniciar && visor) {
             btnIniciar.onclick = () => {
-                // Evita criar múltiplos intervalos se clicar várias vezes
                 if (!cronometro) {
                     cronometro = setInterval(() => {
                         tempo++;
@@ -173,11 +172,10 @@
         }
         
         
-        // --- Exercício 4 ---
+        // Exercício 4
         const selectTime = document.querySelector('#select-time');
         const statusTime = document.querySelector('#time-selecionado');
 
-        // Função para carregar dado salvo ao iniciar
         const timeSalvo = localStorage.getItem('timeFavorito');
         if (timeSalvo) {
             statusTime.innerHTML = timeSalvo;
